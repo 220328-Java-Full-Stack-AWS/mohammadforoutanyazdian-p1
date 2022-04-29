@@ -44,13 +44,13 @@ async function registerRequest(newUser) {
 
 /*
 login function - sends a POST request with necessary credentials
-authDto is a data transfer object containing username and password.
+ is a data transfer object containing username and password.
 let authDto = {
     username: un,
     password: pw
 }
 */
-async function loginRequest(authDto) {
+async function loginRequest(user) {
     let userResourceURL = "http://localhost:8080/api/register";
     let response = await fetch(
         userResourceURL,
@@ -60,7 +60,7 @@ async function loginRequest(authDto) {
                 "Content-Type": "application/json",
                 "mode": "login"
             },
-            body: JSON.stringify(authDto)
+            body: JSON.stringify(user)
         }
     );
 

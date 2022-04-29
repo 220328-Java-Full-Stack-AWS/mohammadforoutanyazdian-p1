@@ -19,12 +19,13 @@ public class AuthService {
     }
 
    public AbstractUser login(AbstractUser model){
-       return userDAO.read(model);
+
+        return userDAO.read(model);
    }
 
 
 
-    public AbstractUser login(String username, String password) {
+    public AbstractUser loginbyup(String username, String password) {
 
         UserDAO userDAO = new UserDAO();
         //List<AbstractUser> abstractUserList = userDAO.getAll();

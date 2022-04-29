@@ -39,36 +39,33 @@ public class UserDAO implements CRUDInterface<AbstractUser> {
         return model;
     }
 
-    public AbstractUser read(AbstractUser model){
-        AbstractUser abstractUser = new AbstractUser();
-        if(abstractUser.getPassword() != null && abstractUser.getUsername() != null){
-            String SQL = "SELECT * from public.users WHERE username = ? AND password = ?";
+    public AbstractUser read(AbstractUser model) {
+        System.out.println("yes ia ma here");
+        System.out.println(model.getPassword());
+        AbstractUser outModel = new AbstractUser();
+        if(model.getPassword() != null && model.getUsername() != null){
+            String SQL = "SELECT * from users WHERE username = ? AND password = ?";
             try{
                 PreparedStatement pstmt = ConnectionManager.getConnection().prepareStatement(SQL);
                 pstmt.setString(1, model.getUsername());
                 pstmt.setString(2, model.getPassword());
                 ResultSet rs = pstmt.executeQuery();
                 while(rs.next()){
-                    abstractUser.setUserId(rs.getInt("users_id"));
-                    abstractUser.setUsername(rs.getString("username"));
-                    abstractUser.setPassword((rs.getString("password")));
-                    abstractUser.setFirstName(rs.getString("first_name"));
-                    abstractUser.setLastName(rs.getString("last_name"));
-                    abstractUser.setEmail(rs.getString("email"));
-                    abstractUser.setRoleId(rs.getInt("role_id"));
+                    outModel.setUserId(rs.getInt("users_id"));
+                    outModel.setUsername(rs.getString("username"));
+                    outModel.setPassword((rs.getString("password")));
+                    outModel.setFirstName(rs.getString("first_name"));
+                    outModel.setLastName(rs.getString("last_name"));
+                    outModel.setEmail(rs.getString("email"));
+                    outModel.setRoleId(rs.getInt("role_id"));
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-    return abstractUser;
+    return outModel;
     }
-
-
-
-
-
 
     @Override
     public AbstractUser read(int users_id) {

@@ -82,7 +82,7 @@ public class Guest {
 }
 
 public static AbstractUser guestLogin(String user_name, String password){
-          AbstractUser a = b.login(user_name, password);
+          AbstractUser a = b.loginbyup(user_name, password);
           return a;
     }
 
